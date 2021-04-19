@@ -1,7 +1,10 @@
-.PHONY: run
-run:
-	docker run -it --rm -d -p 8080:80 --name web -v ~/Development/docker-nginx/site-content:/user/share/nginx/html nginx
+CURRENT_DIR = $(shell pwd)
+NGINX = user/share/nginx/html
 
-.PHONY: stop
+.PHONY: run stop
+
+run:
+	docker run -it --rm -d -p 8080:80 --name web -v $(CURRENT_DIR):/$(NGINX) nginx
+
 stop:
 	docker stop web
