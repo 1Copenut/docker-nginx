@@ -1,10 +1,13 @@
 CURRENT_DIR = $(shell pwd)
-NGINX = user/share/nginx/html
+NGINX = usr/share/nginx/html
 
-.PHONY: run stop
+.PHONY: build up down
 
-run:
-	docker run -it --rm -d -p 8080:80 --name web -v $(CURRENT_DIR):/$(NGINX) nginx
+build:
+	docker build -t webserver .
 
-stop:
+up:
+	docker run -it --rm -d -p 8080:80 --name web -v $(CURRENT_DIR)/content:/$(NGINX) nginx
+
+down:
 	docker stop web
