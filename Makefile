@@ -1,6 +1,3 @@
-CURRENT_DIR = $(shell pwd)
-NGINX = usr/share/nginx/html
-
 .PHONY: build up down
 
 build:
